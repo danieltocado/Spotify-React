@@ -1,19 +1,44 @@
-import React from 'react';
-import Sidebar from './components/Sidebar/Sidebar';
-import Body from './components/Body/Body';
-import Footer from './components/Footer/Footer';
+import React, { Component } from 'react';
+import fire from './config/firebase';
+import Login from './components/Login/Login';
+import Home from './components/Home/Home';
 import './App.css';
 
-function App() {
-  return (
-    <div className="app">
-            <div className="app_body">
-                <Sidebar/>
-                <Body/>
-            </div>
-                <Footer/>
-        </div>
-  );
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      user:{}
+    }
+  }
+
+  componentDidMount(){
+    this.authListener()
+  }
+
+  authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      console.log(user);
+      if (user) {
+        this.setState({ user });
+        //localStorage.setItem('user', user.uid);
+      } else {
+        this.setState({ user: null });
+        //localStorage.removeItem('user');
+      }
+    });
+  }
+
+  render(){
+    return (
+      <div className="app">
+
+          {this.state.user ? <Home/> : <Login/>} 
+
+      </div>
+    )
+  };
 }
 
 export default App;
