@@ -1,44 +1,43 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import fire from './config/firebase';
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import './App.css';
 
-class App extends Component {
+function App() {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      user:{}
-    }
-  }
+  const [user, setUser] = useState({});
 
-  componentDidMount(){
-    this.authListener()
-  }
+  useEffect(() => {
+   authListener()
+    
+  }, [])
 
-  authListener() {
+  function authListener() {
     fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
-      if (user) {
-        this.setState({ user });
-        //localStorage.setItem('user', user.uid);
-      } else {
-        this.setState({ user: null });
-        //localStorage.removeItem('user');
-      }
+      console.log('Logged user:',user);
+      setUser(user)
+      
+      
     });
   }
 
-  render(){
     return (
+      <>
+      <BrowserRouter >
+
       <div className="app">
 
-          {this.state.user ? <Home/> : <Login/>} 
+          {user ? <Home/> : <Login/>} 
 
       </div>
+
+      </BrowserRouter>
+      </>
     )
-  };
+  
 }
 
 export default App;
+
