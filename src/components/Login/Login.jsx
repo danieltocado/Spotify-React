@@ -34,14 +34,14 @@ class Login extends Component {
             // This must be true.
             handleCodeInApp: true,
             iOS: {
-              bundleId: 'com.example.ios'
+              bundleId: 'com.google.ios'
             },
             android: {
-              packageName: 'com.example.android',
+              packageName: 'com.google.android',
               installApp: true,
               minimumVersion: '12'
             },
-            dynamicLinkDomain: 'example.page.link'
+            dynamicLinkDomain: 'google.page.link'
           };
           fire.auth().sendSignInLinkToEmail(this.state.email, actionCodeSettings)
   .then(function() {

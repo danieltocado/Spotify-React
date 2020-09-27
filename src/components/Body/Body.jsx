@@ -17,7 +17,7 @@ const Body = () => {
     const [categoryRock, setCategoryRock] = useState() 
     const [categoryParty, setCategoryParty] = useState() 
 
-    const token = 'BQDfdnQfNWXhqDn6V4vx7vPNehm3wWgk6qfvOeMoBjKpX4xeS089iZzlCyeM69hsBRU1BF5roCNulVqBeDLThEiNfeGjJ51Efcy0osnf7wuh2ny24A-4hYMbavThs_5hJlsu6P-JT9opSrDwtuAGzbCdo7-Jgekfm4jyhgh65Zpifh2e7w'
+    const token = 'BQCK7hav7IU4ah19-kQrD8hkfQEzIwgyDrxPKmadBP21fdhidMRoexzXYyt9ZMmTdY34O6-ODMg3Lq0mhtoh4ls1APWeWpjpSJA-shey0SyDFMxdatJbAb3Te8olJ5wb4ZuCSaI0MoWO5OsymAe1iBOpuGahLDfDaF-bgp1TOTIig6aq'
 
     useEffect(()=> {
         Axios.get(`https://api.spotify.com/v1/browse/categories/mood/playlists?locale=es_ES&limit=9`, {
@@ -54,7 +54,6 @@ const Body = () => {
         <div className="category_info"> 
             <Link to="/category/mood"><h2>Estado de ánimo</h2></Link>
             <h5>Playlists que van con tu estado de ánimo.</h5>
-            About
         </div>
         <div className="body_playlist">
         
